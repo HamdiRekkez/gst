@@ -1,3 +1,12 @@
+// $Id$
+
+/** @file
+ * @brief
+ *
+ * @author Hamdi Rakkez.
+ *
+ */
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -17,14 +26,15 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
 	GstElement *sink = gst_element_factory_make("glimagesink", NULL);
 	gst_bin_add_many(GST_BIN(pipeline), src, upload, glConvert, lumaxpro, sink, NULL);
-	gst_element_link(src, sink);
+	gst_element_link_many(src, upload, glConvert, lumaxpro, sink);
 
-	gst_video_overlay_set_window_handle(GST_VIDEO_OVERLAY(sink), this->winId());
+	Pipeline* pl = new Pipeline(sink);
+	//gst_video_overlay_set_window_handle(GST_VIDEO_OVERLAY(sink), this->winId());
+	pl->renderPipeline2Window(this->winId());
 
-	GstStateChangeReturn ret = gst_element_set_state (pipeline, GST_STATE_PLAYING);
+	GstStateChangeReturn ret = gst_element_set_state(pipeline, GST_STATE_PLAYING);
 
-
-
+	//delete pl;
 }
 
 MainWindow::~MainWindow()

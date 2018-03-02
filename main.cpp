@@ -1,3 +1,12 @@
+// $Id$
+
+/** @file
+ * @brief
+ *
+ * @author Hamdi Rakkez.
+ *
+ */
+
 #include "mainwindow.h"
 #include <QApplication>
 

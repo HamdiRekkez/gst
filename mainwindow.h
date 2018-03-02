@@ -1,7 +1,7 @@
 // $Id$
 
-/** @file
- * @brief
+/** @file mainwindow.h
+ * @brief The main GUI window.
  *
  * @author Hamdi Rakkez.
  *
@@ -13,6 +13,7 @@
 #include <QMainWindow>
 #include <gst/gst.h>
 #include <gst/video/videooverlay.h>
+#include "pipeline.h"
 
 namespace Ui
 {
